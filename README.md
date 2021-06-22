@@ -7,7 +7,7 @@ A flutter plugin to integrate ESEWA merchant services into your application.
 Add this dependency inside of your `pubspec.yaml`
 ```
 dependencies:
-    esewa_client: ^0.1.0
+    esewa_client: ^0.1.1
 ``` 
 
 Add the following attribute inside your `AndroidManifest.xml` (this will set application level theme of your application to Theme.AppCompat descendant)

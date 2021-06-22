@@ -1,6 +1,6 @@
 name: esewa_client
 description: A flutter plugin to integrate ESEWA merchant services into your application.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/sanzaal/esewa_client_flutter
 
 environment:
