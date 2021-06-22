@@ -16,14 +16,13 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
-import java.lang.Exception
 
 class EsewaClientPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener {
 
   private lateinit var channel: MethodChannel
   private lateinit var activity: Activity
 
-  private val REQUEST_CODE_PAYMENT = 1
+  private val REQUEST_CODE_PAYMENT = 6789
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "esewa_client")
@@ -48,6 +47,7 @@ class EsewaClientPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding.activity
+    binding.addActivityResultListener(this)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
@@ -59,7 +59,7 @@ class EsewaClientPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
   }
 
   override fun onDetachedFromActivity() {
-    TODO("Not yet implemented")
+    activity.finish()
   }
 
   private fun startPayment(call: MethodCall) {

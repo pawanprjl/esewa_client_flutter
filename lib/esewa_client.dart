@@ -8,16 +8,16 @@ class EsewaClient {
   final EsewaEnvironment environment;
 
   EsewaClient.configure({
-    @required this.clientId,
-    @required this.secretKey,
+    required this.clientId,
+    required this.secretKey,
     this.environment = EsewaEnvironment.TEST,
   });
 
   void startPayment({
-    @required EsewaPayment esewaPayment,
-    @required Function(Map) onSuccess,
-    @required Function(Map) onFailure,
-    @required Function(String) onCancelled,
+    required EsewaPayment esewaPayment,
+    required Function onSuccess,
+    required Function onFailure,
+    required Function onCancelled,
   }) async {
     _channel.invokeMethod("esewa#startPayment", {
       "client_id": clientId,
@@ -25,7 +25,6 @@ class EsewaClient {
       "payment": esewaPayment.toMap(),
       "environment": describeEnum(environment),
     });
-
     _listenToResponse(onSuccess, onFailure, onCancelled);
   }
 
@@ -54,10 +53,10 @@ class EsewaPayment {
   final String productId, amount, name, callbackUrl;
 
   EsewaPayment({
-    @required this.productId,
-    @required this.amount,
-    @required this.name,
-    @required this.callbackUrl,
+    required this.productId,
+    required this.amount,
+    required this.name,
+    required this.callbackUrl,
   });
 
   Map<String, dynamic> toMap() => {

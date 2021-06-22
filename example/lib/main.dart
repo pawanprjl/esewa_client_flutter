@@ -49,20 +49,17 @@ class _MyAppState extends State<MyApp> {
         amount: "10",
         name: "Test Product",
         callbackUrl:
-        "https://webhook.site/60342249-2a78-426b-9b4f-0ee7171b02ba");
+        "http://example.com/");
 
     _esewaClient.startPayment(
         esewaPayment: payment,
         onSuccess: (data) {
-          print("\n\n\n$data\n\n\n");
           print("success");
         },
         onFailure: (data) {
-          print("\n\n\n$data\n\n\n");
           print("failure");
         },
         onCancelled: (data) {
-          print("\n\n\n$data\n\n\n");
           print("cancelled");
         });
   }
