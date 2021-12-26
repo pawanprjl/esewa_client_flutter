@@ -68,12 +68,13 @@ class EsewaClientPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
     val secretKey: String = message["secret_key"] as String
     val payment: HashMap<String, Any> = message["payment"] as HashMap<String, Any>
     val environment: String = message["environment"] as String
+    var env : ESewaConfiguration = if(environment == "TEST") ESewaConfiguration.ENVIRONMENT_TEST else ESewaConfiguration.ENVIRONMENT_LIVE
 
     // create esewa configuration variable
     val eSewaConfiguration: ESewaConfiguration = ESewaConfiguration()
       .clientId(clientId)
       .secretKey(secretKey)
-      .environment(environment.toLowerCase())
+      .environment(env)
 
     // create esewa payment intent
     val eSewaPayment = ESewaPayment(payment["amount"] as String, payment["product_name"] as String, payment["product_id"] as String, payment["callback_url"] as String)
